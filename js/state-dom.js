@@ -31,12 +31,6 @@ const addTodo = text => {
     render(taskItems)
 }
 
-const addTask = () => {
-    const addTaskInput = document.querySelector('.add_task_input')
-    addTodo(addTaskInput.value)
-    addTaskInput.value = ''
-}
-
 const checkTodo = index => {
     taskItems[index].done = !taskItems[index].done
     render(taskItems)
@@ -78,10 +72,11 @@ const render = (items) => {
 
 }
 
-const addTaskBtn = document.querySelector('.add_task__container')
-addTaskBtn.addEventListener('submit', event => {
+const form = document.forms.add_task_form
+form.addEventListener('submit', event => {
     event.preventDefault()
-    addTask()
+    addTodo(form.add_task_input.value)
+    form.add_task_input.value = ''
 })
 
 render(taskItems)
